@@ -12,6 +12,9 @@
         .user_profile_menu{
             float:right;
         }
+        .order_friend {
+           float:right;
+        }
     </style>
 </head>
 <body>
@@ -26,8 +29,9 @@
 
 <div>
     {%for i in all_profiles%}
-    <p><img src="/media/{{i.avatar}}" width="50" height="50"> Username:{{i.user.username}}</p>
-
+    <p><img src="/media/{{i.avatar}}" width="50" height="50"> Username:{{i.user.username}}
+    <a href="{% url 'order_friend_action' profile_pk=i.pk %}" class="order_friend">Отправить заявку</a>
+    </p>
     <hr>
     {%endfor%}
 </div>

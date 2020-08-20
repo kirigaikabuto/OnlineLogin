@@ -56,6 +56,14 @@ def profile_page(request):
     return render(request, "profiles/profile.html", context=context)
 
 
+def order_friend_action(request,profile_pk):
+    from_user = request.user
+    from_profile = Profile.objects.get(user=from_user)
+    to_profile = Profile.objects.get(pk=profile_pk)
+    order_friend = OrderToFriend(from_profile=from_profile, to_profile=to_profile)
+    order_friend.save()
+    return redirect("profile_page")
+
 def log_out(request):
     logout(request)
     return redirect("login_page")
