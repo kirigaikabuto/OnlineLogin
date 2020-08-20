@@ -52,3 +52,8 @@ def profile_page(request):
         "profile": profile
     }
     return render(request, "profiles/profile.html", context=context)
+
+
+def log_out(request):
+    logout(request)
+    return redirect("login_page")
