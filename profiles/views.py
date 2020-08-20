@@ -48,11 +48,23 @@ def login_page(request):
 def profile_page(request):
     userObject = request.user
     profile = Profile.objects.get(user=userObject)
-    all_profiles = Profile.objects.all().exclude(user=profile.user)
+    profiles = Profile.objects.all().exclude(user=profile.user)
+    orderToFriend = OrderToFriend.objects.all().filter(from_profile=profile)
+    free_profiles = []
+
+    for i in profiles:
+        DoesntExist = True
+        for j in orderToFriend:
+            if i == j.to_profile:
+                DoesntExist = False
+        if DoesntExist:
+            free_profiles.append(i)
+
     context = {
         "profile": profile,
-        "all_profiles": all_profiles,
+        "all_profiles": free_profiles,
     }
+
     return render(request, "profiles/profile.html", context=context)
 
 
