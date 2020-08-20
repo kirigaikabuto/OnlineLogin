@@ -24,5 +24,13 @@
     </div>
 </div>
 
+<div>
+    {%for i in all_profiles%}
+    <p><img src="/media/{{i.avatar}}" width="50" height="50"> Username:{{i.user.username}}</p>
+
+    <hr>
+    {%endfor%}
+</div>
+
 </body>
 </html>

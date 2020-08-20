@@ -48,8 +48,10 @@ def login_page(request):
 def profile_page(request):
     userObject = request.user
     profile = Profile.objects.get(user=userObject)
+    all_profiles = Profile.objects.all().exclude(user=profile.user)
     context = {
-        "profile": profile
+        "profile": profile,
+        "all_profiles": all_profiles,
     }
     return render(request, "profiles/profile.html", context=context)
 
