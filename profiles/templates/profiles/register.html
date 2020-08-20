@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        <!-- вывод основных полей пользователя -->
+
+            {%for field in user_form%}
+                <p>{{field.label_tag}}</p>
+            {{field}}
+            {%endfor%}
+            <br>
+
+            {%for field in profile_form%}
+            <!-- вывод наших полей пользователя -->
+                <p>{{field.label_tag}}</p>
+            {{field}}
+            {%endfor%}
+            <br>
+            <input type="submit" value="Register">
+    </form>
+    
+</body>
+</html>
