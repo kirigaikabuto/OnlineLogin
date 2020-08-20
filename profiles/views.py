@@ -60,15 +60,17 @@ def profile_page(request):
         if DoesntExist:
             free_profiles.append(i)
 
+    orderToMe = OrderToFriend.objects.all().filter(to_profile=profile, accept=False)
+    n = len(orderToMe)
     context = {
         "profile": profile,
         "all_profiles": free_profiles,
+        "count_orders": n,
     }
-
     return render(request, "profiles/profile.html", context=context)
 
 
-def order_friend_action(request,profile_pk):
+def order_friend_action(request, profile_pk):
     from_user = request.user
     from_profile = Profile.objects.get(user=from_user)
     to_profile = Profile.objects.get(pk=profile_pk)
@@ -76,6 +78,20 @@ def order_friend_action(request,profile_pk):
     order_friend.save()
     return redirect("profile_page")
 
+
 def log_out(request):
     logout(request)
     return redirect("login_page")
+
+
+def list_incoming_requests(request):
+    userObject = request.user
+    profile = Profile.objects.get(user=userObject)
+    incomingRequests = OrderToFriend.objects.all().filter(to_profile=profile, accept=False)
+    incomingProfiles = []
+    for i in incomingRequests:
+        incomingProfiles.append(i.from_profile)
+    context = {
+        "orders": incomingProfiles,
+    }
+    return render(request, "profiles/list_incoming_requests.html", context=context)
