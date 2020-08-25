@@ -9,5 +9,6 @@ urlpatterns = [
     path("order_friend_action/<int:profile_pk>/", order_friend_action, name="order_friend_action"),
     path("list_incoming_requests/", list_incoming_requests, name="list_incoming_requests"),
     path("incoming_request_accept/<int:id>", incoming_request_accept, name="incoming_request_accept"),
+    path("list_friends/", list_friends, name="list_friends"),
 ]
 

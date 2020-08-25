@@ -5,6 +5,11 @@
     <title>List Friends</title>
 </head>
 <body>
-
+ {%for i in friends%}
+    <p><img src="/media/{{i.from_profile.avatar}}" width="50" height="50"> Username:{{i.from_profile.user.username}}
+    <a href="#" >Написать сообщение</a>
+    </p>
+    <hr>
+    {%endfor%}
 </body>
 </html>
