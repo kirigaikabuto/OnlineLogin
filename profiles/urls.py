@@ -10,5 +10,6 @@ urlpatterns = [
     path("list_incoming_requests/", list_incoming_requests, name="list_incoming_requests"),
     path("incoming_request_accept/<int:id>", incoming_request_accept, name="incoming_request_accept"),
     path("list_friends/", list_friends, name="list_friends"),
+    path("incoming_request_cancel/<int:id>", incoming_request_cancel, name="incoming_request_cancel"),
 ]
 

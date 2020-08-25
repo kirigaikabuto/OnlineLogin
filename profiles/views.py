@@ -108,3 +108,8 @@ def list_friends(request):
         "friends": friends,
     }
     return render(request,"profiles/list_friends.html", context = context)
+
+def incoming_request_cancel(request, id):
+    order = OrderToFriend.objects.get(pk=id)
+    order.delete()
+    return redirect("list_incoming_requests")
