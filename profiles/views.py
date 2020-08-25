@@ -88,10 +88,15 @@ def list_incoming_requests(request):
     userObject = request.user
     profile = Profile.objects.get(user=userObject)
     incomingRequests = OrderToFriend.objects.all().filter(to_profile=profile, accept=False)
-    incomingProfiles = []
-    for i in incomingRequests:
-        incomingProfiles.append(i.from_profile)
+
     context = {
-        "orders": incomingProfiles,
+        "orders": incomingRequests,
     }
     return render(request, "profiles/list_incoming_requests.html", context=context)
+
+
+def incoming_request_accept(request, id):
+    order = OrderToFriend.objects.get(pk=id)
+    order.accept = True
+    order.save()
+    return redirect("list_incoming_requests")

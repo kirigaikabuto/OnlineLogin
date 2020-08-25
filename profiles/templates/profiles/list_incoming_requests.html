@@ -7,8 +7,8 @@
 <body>
 
 {%for i in orders%}
-    <p><img src="/media/{{i.avatar}}" width="50" height="50"> Username:{{i.user.username}}
-    <a href="#">Принять</a>
+    <p><img src="/media/{{i.from_profile.avatar}}" width="50" height="50"> Username:{{i.from_profile.user.username}}
+        <a href="{% url 'incoming_request_accept' id=i.pk%}">Принять</a>
     </p>
     <hr>
 {%endfor%}
