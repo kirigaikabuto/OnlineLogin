@@ -88,7 +88,6 @@ def list_incoming_requests(request):
     userObject = request.user
     profile = Profile.objects.get(user=userObject)
     incomingRequests = OrderToFriend.objects.all().filter(to_profile=profile, accept=False)
-
     context = {
         "orders": incomingRequests,
     }
@@ -100,3 +99,12 @@ def incoming_request_accept(request, id):
     order.accept = True
     order.save()
     return redirect("list_incoming_requests")
+
+def list_friends(request):
+    userObject = request.user
+    profile = Profile.objects.get(user=userObject)
+    friends = OrderToFriend.objects.all().filter(to_profile=profile, accept=True)
+    context = {
+        "friends": friends,
+    }
+    return render(request,"profiles/list_friends.html", context = context)

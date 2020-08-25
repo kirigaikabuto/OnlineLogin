@@ -22,8 +22,9 @@
     <div class="user_profile_menu">
         <img src="/media/{{profile.avatar}}" width="50" height="50">
         {{profile.user.username}}
-        <a href="#">Личный кабинет</a>
-        <a href="{% url 'list_incoming_requests' %}">Заявки в друзья</a> {{count_orders}}
+        <a href="#">Личный кабинет</a> |
+        <a href="#">Друзья</a> |
+        <a href="{% url 'list_incoming_requests' %}">Заявки в друзья</a> {{count_orders}} |
         <a href="{% url 'log_out' %}">Выйти</a>
     </div>
 </div>
