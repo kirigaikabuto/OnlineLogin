@@ -62,11 +62,15 @@ def profile_page(request):
 
     orderToMe = OrderToFriend.objects.all().filter(to_profile=profile, accept=False)
     n = len(orderToMe)
+    friends = OrderToFriend.objects.all().filter(to_profile=profile, accept=True)
+    n_friends = len(friends)
     context = {
         "profile": profile,
         "all_profiles": free_profiles,
         "count_orders": n,
+        "count_friends": n_friends,
     }
+
     return render(request, "profiles/profile.html", context=context)
 
 
