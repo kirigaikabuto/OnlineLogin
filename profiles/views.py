@@ -121,7 +121,27 @@ def incoming_request_cancel(request, id):
 def private_room(request):
     userObject = request.user
     profile = Profile.objects.get(user=userObject)
+    incoming_requests = OrderToFriend.objects.filter(to_profile=profile)
+    count_incoming_request = len(incoming_requests)
+    friends = OrderToFriend.objects.all().filter(to_profile=profile, accept=True)
+    count_friends = len(friends)
     context = {
         "profile": profile,
+        "count_incoming_request": count_incoming_request,
+        "count_friends": count_friends,
     }
+
     return render(request,"profiles/private_room.html", context = context)
+
+def user_page(request, pk):
+    profile = Profile.objects.get(pk=pk)
+    incoming_requests = OrderToFriend.objects.filter(to_profile=profile)
+    count_incoming_request = len(incoming_requests)
+    friends = OrderToFriend.objects.all().filter(to_profile=profile, accept=True)
+    count_friends = len(friends)
+    context = {
+        "profile": profile,
+        "count_incoming_request": count_incoming_request,
+        "count_friends": count_friends,
+    }
+    return render(request, "profiles/user_page.html", context=context)

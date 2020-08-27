@@ -31,8 +31,10 @@
 
 <div>
     {%for i in all_profiles%}
-    <p><img src="/media/{{i.avatar}}" width="50" height="50"> Username:{{i.user.username}}
-    <a href="{% url 'order_friend_action' profile_pk=i.pk %}" class="order_friend">Отправить заявку</a>
+    <p>
+        <img src="/media/{{i.avatar}}" width="50" height="50">
+        <a href="{% url 'user_page' pk=i.pk%}">{{i.user.username}}</a>
+        <a href="{% url 'order_friend_action' profile_pk=i.pk %}" class="order_friend">Отправить заявку</a>
     </p>
     <hr>
     {%endfor%}

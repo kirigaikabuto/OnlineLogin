@@ -12,5 +12,6 @@ urlpatterns = [
     path("list_friends/", list_friends, name="list_friends"),
     path("incoming_request_cancel/<int:id>", incoming_request_cancel, name="incoming_request_cancel"),
     path("private_room/", private_room, name="private_room"),
+    path("user_page/<int:pk>/", user_page, name="user_page")
 ]
 
