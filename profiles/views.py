@@ -117,3 +117,11 @@ def incoming_request_cancel(request, id):
     order = OrderToFriend.objects.get(pk=id)
     order.delete()
     return redirect("list_incoming_requests")
+
+def private_room(request):
+    userObject = request.user
+    profile = Profile.objects.get(user=userObject)
+    context = {
+        "profile": profile,
+    }
+    return render(request,"profiles/private_room.html", context = context)
